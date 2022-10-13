@@ -1,3 +1,3 @@
 # C Template
-> Template for C project.
+> A Template for C projects.
 
