@@ -48,7 +48,7 @@ int main(int argc, char *argv[]) {
                 break;
             case 'd':
                 debug = true;
-                printf("Running in debug mode!\n");
+                print_log(INFO, "running in debug mode");
                 break;
             default:
                 print_help(argv[0]);
@@ -56,6 +56,12 @@ int main(int argc, char *argv[]) {
                 break;
         }
     }
-    printf("Hello %s, your password is %s!", username, password);
+    if (username == NULL) {
+        print_log(FATAL, "username is required");
+    }
+    if (password == NULL) {
+        print_log(FATAL, "password is required");
+    }
+    print_log(INFO, "Hello %s, your password is %s\n", username, password);
     return 0;
 }
