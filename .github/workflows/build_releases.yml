@@ -34,7 +34,7 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: template-${{runner.os}}
-          path: ${{runner.workspace}}/build/bin
+          path: ${{runner.workspace}}/build/template
 
   build-windows:
     runs-on: ${{ matrix.os }}
@@ -77,4 +77,4 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: template-${{runner.os}}-${{matrix.arch}}
-          path: ${{github.workspace}}\build\bin
+          path: ${{github.workspace}}\build\template.exe
