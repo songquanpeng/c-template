@@ -1,5 +1,5 @@
 # C Template
-> A Template for C projects.
+> A template for C projects.
 
 
 <p>
