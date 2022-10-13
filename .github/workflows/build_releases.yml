@@ -47,18 +47,11 @@ jobs:
     strategy:
       matrix:
         os: [windows-latest]
-        arch: [i686, x86_64]
+        arch: [x86_64]
     defaults:
       run:
         shell: msys2 {0}
     steps:
-      - uses: msys2/setup-msys2@v2
-        if: matrix.arch == 'i686'
-        with:
-          msystem: MINGW32
-          update: true
-          install: base-devel git gcc mingw-w64-${{matrix.arch}}-cmake mingw-w64-${{matrix.arch}}-gcc
-
       - uses: msys2/setup-msys2@v2
         if: matrix.arch == 'x86_64'
         with:
@@ -80,13 +73,10 @@ jobs:
         working-directory: ${{github.workspace}}
         run: cd build && cmake --build . --config $BUILD_TYPE
 
-      - name: Rename
-        run: mv ${{runner.workspace}}/build/template.exe ${{runner.workspace}}/build/template-${{runner.os}}.exe
-
       - name: Upload
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          files: ${{runner.workspace}}/build/template-${{runner.os}}.exe
+          files: ${{runner.workspace}}/build/template.exe
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

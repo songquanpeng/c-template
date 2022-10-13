@@ -62,6 +62,6 @@ int main(int argc, char *argv[]) {
     if (password == NULL) {
         print_log(FATAL, "password is required");
     }
-    print_log(INFO, "Hello %s, your password is %s\n", username, password);
+    print_log(INFO, "Hello %s, your password is %s", username, password);
     return 0;
 }
